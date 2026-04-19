@@ -1,0 +1,17 @@
+Instructions to pull container containing Julia code. On CREATE, singularity is only on the compute nodes, so we have to run an interactive compute node session. 
+
+* Open a new interactive session
+
+srun -p cpu --time 120 —mem=16000 --pty /bin/bash
+
+* Specify the image name
+
+IMAGE_NAME=julia_container_v1_10.img
+
+* Pull, with the correct version
+
+singularity pull --name $IMAGE_NAME docker://julia:1.10.0
+
+* make sure to move it to the containers folder
+
+mv $IMAGE_NAME $W_ROOT/containers/.
